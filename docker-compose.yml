@@ -1,0 +1,27 @@
+version: '3.9'
+services:
+  app1:
+    build:
+      context: ./app1
+      dockerfile: Dockerfile
+    container_name: app1_container
+    ports:
+      - "5001:5001"  # ホストの5001をコンテナの5001にマッピング
+    volumes:
+      - ./app1:/usr/src/app
+    environment:
+      - ENV_VAR=example_value_app1
+    command: python app1_main.py
+
+  app2:
+    build:
+      context: ./app2
+      dockerfile: Dockerfile
+    container_name: app2_container
+    ports:
+      - "5002:5002"  # ホストの5002をコンテナの5002にマッピング
+    volumes:
+      - ./app2:/usr/src/app
+    environment:
+      - ENV_VAR=example_value_app2
+    command: python app2_main.py
