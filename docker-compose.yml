@@ -10,7 +10,7 @@ services:
       - ./appA:/usr/src/app
     environment:
       - ENV_VAR="app_a1"
-    command: python app_a_main.py  # コンテナ起動時に実行するコマンド
+    command: python appA_main.py  # コンテナ起動時に実行するコマンド
 
   app_a2:
     build:
@@ -23,7 +23,7 @@ services:
       - ./appA:/usr/src/app
     environment:
       - ENV_VAR="app_a2"
-    command: python app_a_main.py  # コンテナ起動時に実行するコマンド
+    command: python appA_main.py  # コンテナ起動時に実行するコマンド
 
   app_b1:
     build:
