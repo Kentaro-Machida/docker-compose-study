@@ -1,27 +1,39 @@
-version: '3.9'
 services:
-  app1:
+  app_a1:
     build:
-      context: ./app1
+      context: ./appA
       dockerfile: Dockerfile
-    container_name: app1_container
+    container_name: app_a1_container
     ports:
-      - "5001:5001"  # ホストの5001をコンテナの5001にマッピング
+      - "5001:5000"  # ホストの5001をコンテナの5001にマッピング（ホストマシン:コンテナ）
     volumes:
-      - ./app1:/usr/src/app
+      - ./appA:/usr/src/app
     environment:
-      - ENV_VAR=example_value_app1
-    command: python app1_main.py
+      - ENV_VAR="app_a1"
+    command: python app_a_main.py  # コンテナ起動時に実行するコマンド
 
-  app2:
+  app_a2:
     build:
-      context: ./app2
+      context: ./appA
       dockerfile: Dockerfile
-    container_name: app2_container
+    container_name: app_a2_container
     ports:
-      - "5002:5002"  # ホストの5002をコンテナの5002にマッピング
+      - "5002:5000"  # ホストの5002をコンテナの5001にマッピング（ホストマシン:コンテナ）
     volumes:
-      - ./app2:/usr/src/app
+      - ./appA:/usr/src/app
     environment:
-      - ENV_VAR=example_value_app2
-    command: python app2_main.py
+      - ENV_VAR="app_a2"
+    command: python app_a_main.py  # コンテナ起動時に実行するコマンド
+
+  app_b1:
+    build:
+      context: ./appB
+      dockerfile: Dockerfile
+    container_name: app_b1_container
+    ports:
+      - "6001:6000"  # ホストの5002をコンテナの5002にマッピング
+    volumes:
+      - ./appB:/usr/src/app
+    environment:
+      - ENV_VAR="app_b1"
+    command: python appB_main.py
